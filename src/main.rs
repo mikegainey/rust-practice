@@ -55,5 +55,24 @@ fn main() {
     }
 
 
-    println!("Chapter : \n");
+    {
+        println!("Chapter 3.5: Control Flow\n");
+
+        let mut counter = 0;
+
+        let result = loop {
+            println!("counter = {}", counter);
+            counter += 1;
+
+            if counter == 5 {
+                break counter * 2;
+            }
+        };
+
+        println!("The result is {}\n", result);
+    }
+
+    println!("Chapter 4.1: Ownership\n");
+
+
 }
