@@ -74,5 +74,26 @@ fn main() {
 
     println!("Chapter 4.1: Ownership\n");
 
+    {
+        // after s1 moves into s2, it is no longer valid
+        // let s1 = String::from("hello");
+        // let s2 = s1;                // now s1 is no longer valid
+
+        // println!("{}, world!", s1); // error
+    }
+
+    {
+        // this works
+        let s1 = "Michael";
+        let s2 = s1;
+        println!("s1 = {}, s2 = {}\n", s1, s2);
+    }
+
+    {
+        // this works
+        let a1 = [1, 2, 3];
+        let a2 = a1;
+        println!("a1 = {:?}, a2 = {:?}\n", a1, a2);
+    }
 
 }
