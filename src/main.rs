@@ -130,7 +130,48 @@ fn main() {
         // r1 and r2 are no longer used after this point
 
         let r3 = &mut s; // no problem
-        println!("{}", r3);
+        println!("{}\n", r3);
+    }
+
+    // At any given time, you can have either one mutable reference or any number of immutable references.
+
+    {
+        // string slices
+        let s = "string literal";
+        println!("{}", &s[..6]); // will give an error without the &
+
+        // my speculation:
+        // s[..6] doesn't have a known size; it must be the actual characters
+        // &s[..6] is the string slice: a pointer and length (which has a known size)
+    }
+
+    {
+        fn first_word(s: &String) -> &str {
+            let bytes = s.as_bytes();
+
+            for (i, &item) in bytes.iter().enumerate() {
+                if item == b' ' {
+                    return &s[0..i];
+                }
+            }
+
+            &s[..]
+        }
+
+        let my_string = String::from("hello world");
+
+        // first_word works on slices of `String`s
+        let word = first_word(&my_string[..]);
+        println!("word from string = {}", word);
+
+        let my_string_literal = "hello world";
+
+        // first_word works on slices of string literals
+        let word = first_word(&my_string_literal[..]);
+
+        // Because string literals *are* string slices already,
+        // this works too, without the slice syntax!
+        let word = first_word(my_string_literal);
     }
 
 }
