@@ -84,7 +84,7 @@ fn main() {
 
     {
         // this works
-        let s1 = "Michael";
+        let s1 = "Michael"; // what is the type of s1?  str or &str ? Is str copy?
         let s2 = s1;
         println!("s1 = {}, s2 = {}\n", s1, s2);
     }
@@ -94,6 +94,43 @@ fn main() {
         let a1 = [1, 2, 3];
         let a2 = a1;
         println!("a1 = {:?}, a2 = {:?}\n", a1, a2);
+    }
+
+    {
+        println!("Chapter 4.2: References & Borrowing\n");
+
+        let s1 = String::from("hello");
+
+        let len = calculate_length(&s1);
+
+        println!("The length of '{}' is {}.\n", s1, len);
+
+        fn calculate_length(s: &String) -> usize {
+            s.len()
+        }
+    }
+
+    {
+        // derefrencing
+        let s = String::from("michael");
+
+        let sr = &s;
+
+        println!("sr = {}, *sr = {}", sr, *sr); // automatic dereferecing?
+    }
+
+    {
+        // a *reference’s* scope starts from where it is introduced
+        // and continues through the last time that reference is used.
+        let mut s = String::from("hello");
+
+        let r1 = &s; // no problem
+        let r2 = &s; // no problem
+        println!("{} and {}", r1, r2);
+        // r1 and r2 are no longer used after this point
+
+        let r3 = &mut s; // no problem
+        println!("{}", r3);
     }
 
 }
