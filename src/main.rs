@@ -1,3 +1,4 @@
+#[allow(unused_variables)]
 fn main() {
     println!("\nChapter 3.1: Variables and Mutability\n");
     println!("Chapter 3.2: Data Types\n");
@@ -138,7 +139,7 @@ fn main() {
     {
         // string slices
         let s = "string literal";
-        println!("{}", &s[..6]); // will give an error without the &
+        println!("{}\n", &s[..6]); // will give an error without the &
 
         // my speculation:
         // s[..6] doesn't have a known size; it must be the actual characters
@@ -146,7 +147,7 @@ fn main() {
     }
 
     {
-        fn first_word(s: &String) -> &str {
+        fn first_word(s: &str) -> &str {
             let bytes = s.as_bytes();
 
             for (i, &item) in bytes.iter().enumerate() {
@@ -162,16 +163,18 @@ fn main() {
 
         // first_word works on slices of `String`s
         let word = first_word(&my_string[..]);
-        println!("word from string = {}", word);
+        println!("first word from string = {}", word);
 
         let my_string_literal = "hello world";
 
         // first_word works on slices of string literals
         let word = first_word(&my_string_literal[..]);
+        println!("first word from string literal = {}", word);
 
         // Because string literals *are* string slices already,
         // this works too, without the slice syntax!
         let word = first_word(my_string_literal);
+        println!("first word from string literal = {}\n", word);
     }
 
 }
