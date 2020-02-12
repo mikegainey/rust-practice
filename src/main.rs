@@ -1,5 +1,13 @@
-#[allow(unused_variables)]
+#![allow(unused_variables)]
+#![allow(dead_code)]
 fn main() {
+
+    // chapter3();
+    // chapter4()
+    chapter5()
+}
+
+fn chapter3() {
     println!("\nChapter 3.1: Variables and Mutability\n");
     println!("Chapter 3.2: Data Types\n");
 
@@ -72,7 +80,9 @@ fn main() {
 
         println!("The result is {}\n", result);
     }
+}
 
+fn chapter4() {
     println!("Chapter 4.1: Ownership\n");
 
     {
@@ -177,4 +187,33 @@ fn main() {
         println!("first word from string literal = {}\n", word);
     }
 
+    {
+        // error!
+        // let s = "michael";
+        // println!("{}", s[..3]); // doesn't have a size known at compile-time
+    }
 }
+
+fn chapter5() {
+    println!("\nChapter 5.1: Defining and Instantiating Structs\n");
+
+    {
+        struct User {
+            username: String,
+            email: String,
+            sign_in_count: u64,
+            active: bool,
+        }
+
+        let user1 = User {
+            email: String::from("someone@example.com"),
+            username: String::from("someusername123"),
+            active: true,
+            sign_in_count: 1,
+        };
+
+    }
+
+
+}
+
