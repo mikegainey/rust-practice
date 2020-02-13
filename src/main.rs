@@ -205,15 +205,51 @@ fn chapter5() {
             active: bool,
         }
 
-        let user1 = User {
+        // the fields can be in any order
+        let mut user1 = User {
             email: String::from("someone@example.com"),
             username: String::from("someusername123"),
             active: true,
             sign_in_count: 1,
         };
 
+        println!("user1's email is {}", user1.email);
+
+        // updating a field in a mutable struct
+        user1.email = String::from("someoneelse@example.com");
+
+        println!("user1's email changed to {}", user1.email);
+
+        // field init shorthand
+        fn build_user(username: String, email: String) -> User {
+            User {
+                username, // field init shorthand can be used when the
+                email,    // parameter names and the struct field names are exactly the same
+                active: true,
+                sign_in_count: 1,
+            }
+        }
+
+        // Struct update syntax; unspecified fields have the same values as user1
+        let user2 = User {
+            email: String::from("user2@example.com"),
+            username: String::from("user2name123"),
+            ..user1
+        };
     }
 
+    {
+        // Tuple structs have the added meaning the struct name provides but don’t have names associated with their fields
 
+        struct Color {i32, i32, i32};
+        struct Point {i32, i32, i32};
+
+        let black = Color(0, 0, 0);  // black and origin are different types;
+        let origin = Point(0, 0, 0); // even though they contain the same inner types
+
+
+
+
+    }
 }
 
