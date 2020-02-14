@@ -218,7 +218,7 @@ fn chapter5() {
         // updating a field in a mutable struct
         user1.email = String::from("someoneelse@example.com");
 
-        println!("user1's email changed to {}", user1.email);
+        println!("user1's email changed to {}\n", user1.email);
 
         // field init shorthand
         fn build_user(username: String, email: String) -> User {
@@ -241,8 +241,8 @@ fn chapter5() {
     {
         // Tuple structs have the added meaning the struct name provides but don’t have names associated with their fields
 
-        struct Color {i32, i32, i32};
-        struct Point {i32, i32, i32};
+        struct Color (i32, i32, i32);
+        struct Point (i32, i32, i32);
 
         let black = Color(0, 0, 0);  // black and origin are different types;
         let origin = Point(0, 0, 0); // even though they contain the same inner types
@@ -250,5 +250,38 @@ fn chapter5() {
 
 
     }
+
+    {
+        println!("Chapter 5.2: Example Program using structs\n");
+        #[derive(Debug)]
+        struct Rectangle {
+            width: u32,
+            height: u32,
+        }
+
+        impl Rectangle {
+            fn area(&self) -> u32 {
+                self.width * self.height
+            }
+        }
+
+        // fn area(rectangle: &Rectangle) -> u32 { // replaced with a method
+        //     rectangle.width * rectangle.height
+        // }
+
+        let rect1 = Rectangle { width: 30, height: 50 };
+
+        println!(
+            "The area of the rectangle is {} square pixels.\n",
+            rect1.area()
+        );
+
+        println!("rect1 = {:?}", rect1); // put #[derive(Debug)] just before the struct definition
+
+        println!("\nChapter 5.3: Method Syntax\n");
+
+
+    }
+
 }
 
