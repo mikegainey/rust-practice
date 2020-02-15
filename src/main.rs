@@ -263,6 +263,13 @@ fn chapter5() {
             fn area(&self) -> u32 {
                 self.width * self.height
             }
+            fn can_hold(&self, other: &Rectangle) -> bool {
+                self.width > other.width && self.height > other.height
+            }
+            // an associated function (no self); called with Rectangle::square(arg)
+            fn square(side: u32) -> Rectangle {
+                Rectangle { width: side, height: side}
+            }
         }
 
         // fn area(rectangle: &Rectangle) -> u32 { // replaced with a method
@@ -280,8 +287,41 @@ fn chapter5() {
 
         println!("\nChapter 5.3: Method Syntax\n");
 
+        // Rust has a feature called automatic referencing and dereferencing.
+        // Calling methods is one of the few places in Rust that has this behavior.
 
+        // When you call a method with object.something(),
+        // Rust automatically adds in &, &mut, or * so object matches the signature of the method.
+
+        // let rect1 = Rectangle { width: 30, height: 50 }; // already defined
+        let rect2 = Rectangle { width: 10, height: 40 };
+        let rect3 = Rectangle { width: 60, height: 45 };
+
+        println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+        println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
+
+        let sq = Rectangle::square(3);
     }
 
+    {
+        println!("\nChapter 6: Enums and Pattern Matching\n");
+
+        enum IpAddrKind {
+            V4,
+            V6,
+        }
+
+        enum Previous {
+            Alpha,
+            NotAlpha
+        }
+
+        let p = Previous::Alpha;
+
+        match p {
+            Previous::Alpha => println!("is alpha"),
+            Previous::NotAlpha => println!("is not alpha"),
+        }
+    }
 }
 
