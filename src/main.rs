@@ -311,17 +311,17 @@ fn chapter5() {
             V6,
         }
 
-        enum Previous {
-            Alpha,
-            NotAlpha
+        let four = IpAddrKind::V4;
+        let six = IpAddrKind::V6;
+
+        // bundled with data of different types for each variant
+        enum IpAddr {
+            V4(u8, u8, u8, u8),
+            V6(String),
         }
 
-        let p = Previous::Alpha;
-
-        match p {
-            Previous::Alpha => println!("is alpha"),
-            Previous::NotAlpha => println!("is not alpha"),
-        }
+        let home = IpAddr::V4(127, 0, 0, 1);
+        let loopback = IpAddr::V6(String::from("::1"));
     }
 }
 
