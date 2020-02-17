@@ -247,8 +247,6 @@ fn chapter5() {
         let black = Color(0, 0, 0);  // black and origin are different types;
         let origin = Point(0, 0, 0); // even though they contain the same inner types
 
-
-
     }
 
     {
@@ -306,15 +304,6 @@ fn chapter5() {
     {
         println!("\nChapter 6: Enums and Pattern Matching\n");
 
-        enum IpAddrKind {
-            V4,
-            V6,
-        }
-
-        let four = IpAddrKind::V4;
-        let six = IpAddrKind::V6;
-
-        // bundled with data of different types for each variant
         enum IpAddr {
             V4(u8, u8, u8, u8),
             V6(String),
@@ -322,6 +311,15 @@ fn chapter5() {
 
         let home = IpAddr::V4(127, 0, 0, 1);
         let loopback = IpAddr::V6(String::from("::1"));
+
+        // different types embedded in the variants
+        enum Message {
+            Quit,                       // no extra data
+            Move { x: i32, y: i32 },    // an anonymous struct (what is this?)
+            Write(String),              // a string
+            ChangeColor(i32, i32, i32), // 3 i32 values
+}
+
     }
 }
 
